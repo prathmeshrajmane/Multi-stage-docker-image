@@ -72,7 +72,6 @@ stage('Runtime Security Check') {
            script {
                echo "Monitoring runtime with Falco..."
                sh '''
-               docker run -d --name ${CONTAINER_NAME} ${DOCKER_HUB_REPO}:latest
                sleep 10  # Wait for container to start
                if journalctl -u falco --since "1 minute ago" | grep -q "suspicious"; then
                    echo "Runtime threat detected!"
